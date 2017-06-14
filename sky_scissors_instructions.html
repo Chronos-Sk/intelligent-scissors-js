@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Sky Scissors Instructions{% endblock %}
+
+{% block include %}
+<style>
+	.big-img {
+		width: 400px;
+		display: block;
+	}
+	
+	.ex-img, .instruction-item .big-img {
+		width: 200px;
+		padding-bottom: 0.5em;
+	}
+	
+	.ex-img {
+		float: right;
+	}
+	
+	.instructions, .legend {
+		max-width: 100em;
+	}
+</style>
+{% endblock %}
+
+{% block content %}
+<div style="padding: 20px;">
+    <img src="/static/images/logo.png" />
+	
+	<h1 style="padding-top: 1em">Sky Scissors Instructions</h1>
+	
+	<h2>Interface:</h2>
+	<img src="/static/images/mturk/sky_scissors_annotated.png" />
+	
+	<h2>Legend:</h2>
+	<ol class="legend">
+	    <li class="legend-item">Status Bar: Displays what is currently going on behind the scenes.</li>
+	    <li class="legend-item">Stop Drawing: Stops the drawing process and detach the mouse from the last point clicked.</li>
+	    <li class="legend-item">Clear Lines: Removes all of the lines so far from the image. This cannot be undone.</li>
+	    <li class="legend-item">Undo: Undoes the last line segment drawn and stops the drawing process.</li>
+	    <li class="legend-item">Submit: Submits the HIT to Mechanical Turk for processing.</li>
+	    <li class="legend-item">Image: The image to draw on. Clicking on this will start the drawing process.</li>
+	</ol>
+	
+	<h2>Instructions:</h2>
+	<p>
+		In this HIT, you will be separating the sky from the rest of the image
+		by drawing a line along the sky's boundary, where the sky and the rest
+		of the image meet. In order to do this, you must:
+	</p>
+	<ol class="instructions">
+	    <li class="instruction-item">First wait for the status bar (1) to say "Ready". This tells you that the image (6) is ready to be drawn on.</li>
+	    <li class="instruction-item">Click somewhere on the boundary between the sky and the rest of the image. When clicking, click and release, do not click and hold. The status bar (1) should now say "Processing...".</li>
+	    <li class="instruction-item">You can now move the mouse around the image. There should be a line drawn from where you click to where you move the cursor. If a line is not drawn between your mouse and where you last clicked, that means that your browser does not yet know exactly how to draw the line. If you wait, the line should pop in shortly.<img class="ex-img" src="/static/images/mturk/sky_scissors_drawing.png"></li>
+	    <li class="instruction-item">You can now click on another point in the image to fix the line shown in place and continue the line. Make sure you wait for the line to appear before clicking, otherwise nothing will happen, and you will still be attached to the same point.</li>
+	    <li class="instruction-item">If you do not want to continue a line, click on the Stop Drawing (2) button. Everywhere you clicked will be saved, and you can start a new line anywhere you want.</li>
+	    <li class="instruction-item">If you mess up, you can click on the undo button (4) to remove the last line segment, or you can click clear lines (3) to start over again.</li>
+	    <li class="instruction-item">Once you are finished, click on the submit button (5) to submit the HIT.</li>
+	</ol>
+	
+	<h2>Notes:</h2>
+	<ul class="instructions">
+		<li class="instruction-item">You do not need to draw a line around the outer border of the image, and you don't have to draw around clouds or things of that nature.</li>
+		<li class="instruction-item">If the status bar (1) changes to say "Ready!", that means it has finished processing, and you should be able to move your mouse anywhere in the image and see a line.</li>
+		<li class="instruction-item">
+			If you try and go too far with one line, the line might not align with the boundary of the sky:
+			<img class="big-img" src="/static/images/mturk/sky_scissors_oops.png">
+			By drawing the line is shorter steps, this can be avoided:
+			<img class="big-img" src="/static/images/mturk/sky_scissors_fixed.png">
+		</li>
+	</ul>
+	
+	<h2>Example completed HIT:</h2>
+	<img class="big-img" src="/static/images/mturk/sky_scissors_finished.png" />
+</div>
+{% endblock %}
